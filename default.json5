@@ -1,0 +1,55 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:base'],
+  platformAutomerge: true,
+
+  // Avoid destruction of CI credits
+  rebaseWhen: 'never',
+  // Never update *to* a pre-release version
+  ignoreUnstable: true,
+
+  // PR opening limitations (just in case the job is not well setup)
+  prHourlyLimit: 1,
+  prConcurrentLimit: 1,
+
+  packageRules: [
+    {
+      // base behavior: automerge minors & patch updates for >=1.0.0 versions
+      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      matchCurrentVersion: '>=1.0.0',
+      autoApprove: true,
+      automerge: true,
+    },
+    {
+      // don't consider major updates
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      // group patch updates
+      matchUpdateTypes: ['patch'],
+      matchCurrentVersion: '>=1.0.0',
+      groupName: 'all patch updates',
+      groupSlug: 'all-patch-updates',
+      prPriority: 0,
+      autoApprove: true,
+      automerge: true,
+    },
+    {
+      // group minor updates of aws-sdk/*
+      matchPackagePatterns: ['^@aws-sdk/'],
+      matchUpdateTypes: ['minor'],
+      groupName: 'aws-sdk minor updates',
+      groupSlug: 'aws-sdk-minor-updates',
+      autoApprove: true,
+      automerge: true,
+    },
+    {
+      // don't automerge 0.x versions
+      matchCurrentVersion: '^0\\.',
+      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      autoApprove: false,
+      automerge: false,
+    },
+  ],
+}
