@@ -7,10 +7,9 @@
   // Avoid destruction of CI credits
   // #################################
   rebaseWhen: 'never',
-  branchConcurrentLimit: 1,
   // PR opening limitations (just in case the job is not well setup)
-  prHourlyLimit: 1,
-  prConcurrentLimit: 1,
+  branchConcurrentLimit: 1,   // cap: only 1 new PR per execution
+  prConcurrentLimit: 10,      // block when too many old PRs are still open
 
   // ##########################################
   // Never upgrade *to* a pre-release version
