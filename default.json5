@@ -38,7 +38,7 @@
       // group patch updates
       matchUpdateTypes: ['patch'],
       matchCurrentVersion: '>=1.0.0',
-      groupName: 'all patch updates',
+      groupName: 'all patches',
       groupSlug: 'all-patch-updates',
       prPriority: 0,
       autoApprove: true,
@@ -48,8 +48,9 @@
       // group minor updates of aws-sdk/*
       matchPackagePatterns: ["^@aws-sdk"],
       matchUpdateTypes: ['minor'],
-      groupName: 'aws-sdk minor updates',
+      groupName: 'aws-sdk minors',
       groupSlug: 'aws-sdk-minor-updates',
+      prPriority: 1,
       autoApprove: true,
       automerge: true,
     },
