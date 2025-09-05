@@ -3,6 +3,7 @@
   extends: ['config:recommended'],
   platformAutomerge: true,
   rangeStrategy: "bump",
+  separateMinorPatch: true,
 
   // #################################
   // Avoid destruction of CI credits
