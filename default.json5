@@ -1,6 +1,6 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['config:recommended'],
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended"],
   platformAutomerge: true,
   rangeStrategy: "bump",
   separateMinorPatch: true,
@@ -8,16 +8,20 @@
   // #################################
   // Avoid destruction of CI credits
   // #################################
-  rebaseWhen: 'never',
+  rebaseWhen: "never",
   // PR opening limitations (just in case the job is not well setup)
-  branchConcurrentLimit: 1,   // cap: only 1 new PR per execution
-  prConcurrentLimit: 10,      // block when too many old PRs are still open
+  branchConcurrentLimit: 1, // cap: only 1 new PR per execution
+  prConcurrentLimit: 10, // block when too many old PRs are still open
 
   // ##########################################
   // Never upgrade *to* a pre-release version
   // ##########################################
   ignoreUnstable: true,
 
+  // ##########################################
+  // Add minimum release date to avoid infested packages
+  // ##########################################
+  minimumReleaseAge: "14 days",
 
   // ################
   // Package Rules
@@ -25,22 +29,22 @@
   packageRules: [
     {
       // base behavior: automerge minors & patch updates for >=1.0.0 versions
-      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
-      matchCurrentVersion: '>=1.0.0',
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      matchCurrentVersion: ">=1.0.0",
       autoApprove: true,
       automerge: true,
     },
     {
       // don't consider major updates
-      matchUpdateTypes: ['major'],
+      matchUpdateTypes: ["major"],
       enabled: false,
     },
     {
       // group patch updates
-      matchUpdateTypes: ['patch'],
-      matchCurrentVersion: '>=1.0.0',
-      groupName: 'all patches',
-      groupSlug: 'all-patch-updates',
+      matchUpdateTypes: ["patch"],
+      matchCurrentVersion: ">=1.0.0",
+      groupName: "all patches",
+      groupSlug: "all-patch-updates",
       prPriority: 0,
       autoApprove: true,
       automerge: true,
@@ -48,17 +52,17 @@
     {
       // group minor updates of aws-sdk/*
       matchPackagePatterns: ["^@aws-sdk"],
-      matchUpdateTypes: ['minor'],
-      groupName: 'aws-sdk minors',
-      groupSlug: 'aws-sdk-minor-updates',
+      matchUpdateTypes: ["minor"],
+      groupName: "aws-sdk minors",
+      groupSlug: "aws-sdk-minor-updates",
       prPriority: 1,
       autoApprove: true,
       automerge: true,
     },
     {
       // don't automerge 0.x versions
-      matchCurrentVersion: '^0\\.',
-      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      matchCurrentVersion: "^0\\.",
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
       autoApprove: false,
       automerge: false,
     },
