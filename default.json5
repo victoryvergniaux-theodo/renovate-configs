@@ -22,6 +22,7 @@
   // Add minimum release date to avoid infested packages
   // ##########################################
   minimumReleaseAge: "14 days",
+  internalChecksFilter: "strict",
 
   // ################
   // Package Rules
