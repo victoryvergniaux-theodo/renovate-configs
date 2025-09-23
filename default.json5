@@ -21,6 +21,7 @@
   // ##########################################
   // Add minimum release date to avoid infested packages
   // ##########################################
+  dependencyDashboard: true,
   minimumReleaseAge: "14 days",
   internalChecksFilter: "strict",
 
